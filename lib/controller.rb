@@ -1,9 +1,11 @@
 class Controller
 
   def call
-    list_demos
-    more_info
-    exit?
+
+    hi = Scraper.new
+    # list_demos
+    # more_info
+    # exit?
   end
 
   def list_demos
