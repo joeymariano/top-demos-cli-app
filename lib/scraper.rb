@@ -22,6 +22,7 @@ class Scraper
       file_url = additional_info[0]
       Demo.new(title, group, url, type, platform, youtube, file_url)
     end
+    binding.pry
   end
 
   def get_frm_demos_pg(url)
@@ -32,9 +33,9 @@ class Scraper
       inquiry = link.at('a').attr('href')
       if flag == true
         result << inquiry
-        flag == false
+        flag = false
       end
-      if inquiry.include?('youtube')
+      if inquiry.include?('youtu')
          result << inquiry
       end
     end
