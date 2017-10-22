@@ -4,7 +4,7 @@ class Controller
 
     Scraper.new
     list_demos
-    # more_info
+    more_info
     # exit?
   end
 
@@ -29,6 +29,7 @@ class Controller
   def more_info
     puts "\nWhich demo # would you like more information on?"
     input = gets.strip
+    # need to get rid of this case statement
     case input
       when "1"
 
