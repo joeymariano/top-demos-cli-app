@@ -15,14 +15,14 @@ class Controller
     counter = 1
     Demo.all.each do |demo|
       if counter <= 9
-        puts "#{counter}.  #{demo.title}"
+        puts "#{counter}.  #{demo.title} by #{demo.group}"
         puts "      #{demo.youtube}"
       else
-        puts "#{counter}. #{demo.title}"
+        puts "#{counter}. #{demo.title} by #{demo.group}"
         puts "      #{demo.youtube}"
+        puts "\n"
       end
       counter += 1
-
     end
   end
 
@@ -31,29 +31,9 @@ class Controller
     input = gets.strip
     case input
       when "1"
-        puts <<-DOC
-        Waillee by Prismbeings
-        https://www.youtube.com/watch?v=CDDedA-x2-k
-        platform : Windows
-        type : 4k
-        release date :	October 2017
-        release party :	Deadline (Berlin) 2017
-        compo :	pc 4k
-        ranked :	1st
-        DOC
-        puts "\n"
+
       when "2"
-        puts <<-DOC
-        hold on by holon
-        https://www.youtube.com/watch?v=3wIJwfyeOB0
-        platform : JavaScript
-        type : demo
-        release date :	october 2017
-        release party :	Deadline (Berlin) 2017
-        compo :	pc demo
-        ranked : 1st
-        DOC
-        puts "\n"
+
       else
         puts "\n"
         puts "Please select a valid number."
