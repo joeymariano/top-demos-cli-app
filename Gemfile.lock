@@ -15,9 +15,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  nokogiri
+  nokogiri (= 1.7.1)
   pry
-  require_all
+  require_all (= 1.4.0)
 
 BUNDLED WITH
    1.14.6

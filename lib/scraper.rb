@@ -22,17 +22,23 @@ class Scraper
       file_url = additional_info[0]
       Demo.new(title, group, url, type, platform, youtube, file_url)
     end
-    binding.pry
   end
 
   def get_frm_demos_pg(url)
     result = []
+    flag = true
     demo_doc = Nokogiri::HTML(open(url))
     demo_doc.css('#links ul li').each do |link|
-      result << link.at('a').attr('href')
-      #need to use regex to capture correct info
+      inquiry = link.at('a').attr('href')
+      if flag == true
+        result << inquiry
+        flag == false
+      end
+      if inquiry.include?('youtube')
+         result << inquiry
+      end
     end
     result
   end
 
-end
+end # end class
