@@ -18,11 +18,10 @@ class Scraper
       type = demo.css('span.typeiconlist').text.chomp
       platform = demo.css('span.platformiconlist').text.chomp
       additional_info = get_frm_demos_pg(url)
-      youtube = additional_info[1]
       file_url = additional_info[0]
+      youtube = additional_info[1]
       Demo.new(title, group, url, type, platform, youtube, file_url)
     end
-    binding.pry
   end
 
   def get_frm_demos_pg(url)
@@ -40,6 +39,8 @@ class Scraper
       end
     end
     result
+    # result[0] returns file_url
+    # result[1] returns youtube link
   end
 
 end # end class

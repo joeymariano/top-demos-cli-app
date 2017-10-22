@@ -2,8 +2,8 @@ class Controller
 
   def call
 
-    hi = Scraper.new
-    # list_demos
+    Scraper.new
+    list_demos
     # more_info
     # exit?
   end
@@ -12,12 +12,18 @@ class Controller
     puts "\n"
     puts "*///// TOP DEMOS of the month FROM Pouet.net /////*"
     puts "\n"
-    puts <<-DOC
-      1. Waillee by Prismbeings
-         https://www.youtube.com/watch?v=CDDedA-x2-k
-      2. hold on by holon
-         https://www.youtube.com/watch?v=3wIJwfyeOB0
-    DOC
+    counter = 1
+    Demo.all.each do |demo|
+      if counter <= 9
+        puts "#{counter}.  #{demo.title}"
+        puts "      #{demo.youtube}"
+      else
+        puts "#{counter}. #{demo.title}"
+        puts "      #{demo.youtube}"
+      end
+      counter += 1
+
+    end
   end
 
   def more_info
