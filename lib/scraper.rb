@@ -1,7 +1,7 @@
 class Scraper
 
   def initialize
-    doc = Nokogiri::HTML(open("http://pouet.net/"))
+    doc = Nokogiri::HTML(open("http://pouet.net/index.php"))
     create_demos(doc)
   end
 
@@ -30,6 +30,7 @@ class Scraper
     demo_doc = Nokogiri::HTML(open(url))
     demo_doc.css('#links ul li').each do |link|
       result << link.at('a').attr('href')
+      #need to use regex to capture correct info
     end
     result
   end
