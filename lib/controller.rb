@@ -4,7 +4,6 @@ class Controller
     Scraper.new
     puts "\n"
     puts "*///// TOP DEMOS of the month FROM Pouet.net /////*"
-    puts "type 'exit' at any time"
     puts "\n"
     list_demos
     ask
@@ -12,6 +11,7 @@ class Controller
 
   def list_demos
     counter = 1
+    puts " \n"
     Demo.all.each do |demo|
       if counter <= 9
         puts "#{counter}.  #{demo.title} by #{demo.group}"
@@ -40,14 +40,17 @@ class Controller
   end
 
   def ask
-    puts "To exit type 'exit'"
-    puts "For more information type the # for the demo."
-    puts "To list the demos again type 'list'."
+    puts "Type exit to leave."
+    puts "Type list to list the demos again."
+    puts "For more information type the demo's number."
+
     input = gets.strip
     numbers = [*(1..10)]
     numbers.collect! {|n| n.to_s}
     if !valid_input?(input, numbers)
+      puts "\n"
       puts "Please enter a valid command."
+      puts "\n"
       ask
     elsif input == 'list'
       list_demos
