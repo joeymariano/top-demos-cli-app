@@ -1,6 +1,8 @@
 class Controller
 
   def call
+    puts " "
+    puts "Retrieving information from Pouet.net..."
     Scraper.new
     puts " "
     puts "*///// TOP DEMOS of the month FROM Pouet.net /////*"
