@@ -2,16 +2,15 @@ class Controller
 
   def call
     Scraper.new
-    puts "\n"
+    puts " "
     puts "*///// TOP DEMOS of the month FROM Pouet.net /////*"
-    puts "\n"
     list_demos
     ask
   end # end call
 
   def list_demos
     counter = 1
-    puts " \n"
+    puts " "
     Demo.all.each do |demo|
       if counter <= 9
         puts "#{counter}.  #{demo.title} by #{demo.group}"
@@ -19,7 +18,7 @@ class Controller
       else
         puts "#{counter}. #{demo.title} by #{demo.group}"
         puts "      #{demo.youtube}"
-        puts "\n"
+        puts " "
       end
       counter += 1
     end
@@ -28,7 +27,7 @@ class Controller
   def more_info(input)
     input = input.to_i
     input -= 1
-    puts " \n"
+    puts " "
     puts "Title: #{Demo.all[input].title}"
     puts "Group: #{Demo.all[input].group}"
     puts "Type: #{Demo.all[input].type}"
@@ -36,7 +35,7 @@ class Controller
     puts "Youtube: #{Demo.all[input].youtube}"
     puts "File: #{Demo.all[input].file_url}"
     puts "Pouet Info: #{Demo.all[input].url}"
-    puts "\n"
+    puts " "
   end
 
   def ask
@@ -48,9 +47,9 @@ class Controller
     numbers = [*(1..10)]
     numbers.collect! {|n| n.to_s}
     if !valid_input?(input, numbers)
-      puts "\n"
+      puts " "
       puts "Please enter a valid command."
-      puts "\n"
+      puts " "
       ask
     elsif input == 'list'
       list_demos
