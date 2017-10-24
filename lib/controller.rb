@@ -1,17 +1,16 @@
 class Controller
 
   def call
-
     Scraper.new
-    list_demos
-    more_info
-    exit?
-  end
-
-  def list_demos
     puts "\n"
     puts "*///// TOP DEMOS of the month FROM Pouet.net /////*"
+    puts "type 'exit' at any time"
     puts "\n"
+    list_demos
+    ask
+  end # end call
+
+  def list_demos
     counter = 1
     Demo.all.each do |demo|
       if counter <= 9
@@ -26,39 +25,50 @@ class Controller
     end
   end
 
-  def more_info
-    puts "\nWhich demo # would you like more information on?"
-    input = gets.strip.to_i
-    input = input - 1
-    # need to get rid of this case statement
-    if input >= 0 && input <= 9
-      puts "\n"
-      puts "Title: #{Demo.all[input].title}"
-      puts "Group: #{Demo.all[input].group}"
-      puts "Type: #{Demo.all[input].type}"
-      puts "Platform: #{Demo.all[input].platform}"
-      puts "Youtube: #{Demo.all[input].youtube}"
-      puts "File: #{Demo.all[input].file_url}"
-      puts "Pouet Info: #{Demo.all[input].url}"
-      puts "\n"
+  def more_info(input)
+    input = input.to_i
+    input -= 1
+    puts " \n"
+    puts "Title: #{Demo.all[input].title}"
+    puts "Group: #{Demo.all[input].group}"
+    puts "Type: #{Demo.all[input].type}"
+    puts "Platform: #{Demo.all[input].platform}"
+    puts "Youtube: #{Demo.all[input].youtube}"
+    puts "File: #{Demo.all[input].file_url}"
+    puts "Pouet Info: #{Demo.all[input].url}"
+    puts "\n"
+  end
+
+  def ask
+    puts "To exit type 'exit'"
+    puts "For more information type the # for the demo."
+    puts "To list the demos again type 'list'."
+    input = gets.strip
+    numbers = [*(1..10)]
+    numbers.collect! {|n| n.to_s}
+    if !valid_input?(input, numbers)
+      puts "Please enter a valid command."
+      ask
+    elsif input == 'list'
+      list_demos
+      ask
+    elsif numbers.include?(input)
+      more_info(input)
+      ask
     else
-      puts "Please select a valid number."
-      more_info
+      #exit program
     end
   end
 
-  def exit?
-    puts "Would you like to exit y/n?"
-    puts "Answering no will bring you back to the list."
-    input = gets.strip
-    if input == "y" || input == "Y"
-      # do nothing and leave loop
-    elsif input == "n" || input == "N"
-      list_demos
-      more_info
-      exit?
+  def valid_input?(input, numbers)
+    if numbers.include?(input)
+      true
+    elsif input == 'exit'
+      true
+    elsif input == 'list'
+      true
     else
-      exit?
+      false
     end
   end
 
