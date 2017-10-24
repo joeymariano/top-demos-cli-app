@@ -10,7 +10,9 @@ class Controller
 
   def list_demos
     counter = 1
+
     puts " "
+
     Demo.all.each do |demo|
       if counter <= 9
         puts "#{counter}.  #{demo.title} by #{demo.group}"
@@ -20,6 +22,7 @@ class Controller
         puts "      #{demo.youtube}"
         puts " "
       end
+
       counter += 1
     end
   end
@@ -27,6 +30,7 @@ class Controller
   def more_info(input)
     input = input.to_i
     input -= 1
+
     puts " "
     puts "Title: #{Demo.all[input].title}"
     puts "Group: #{Demo.all[input].group}"
@@ -44,8 +48,10 @@ class Controller
     puts "For more information type the demo's number."
 
     input = gets.strip
+
     numbers = [*(1..10)]
     numbers.collect! {|n| n.to_s}
+
     if !valid_input?(input, numbers)
       puts " "
       puts "Please enter a valid command."

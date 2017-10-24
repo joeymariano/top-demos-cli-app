@@ -11,6 +11,7 @@ class Scraper
     url = nil
     type = nil
     platform = nil
+
     doc.css('#pouetbox_topmonth li').each do |demo|
       title = demo.css('span.prod').text
       group = demo.css('span.group a').text
@@ -28,12 +29,15 @@ class Scraper
     result = []
     flag = true
     demo_doc = Nokogiri::HTML(open(url))
+
     demo_doc.css('#links ul li').each do |link|
       inquiry = link.at('a').attr('href')
+
       if flag == true
         result << inquiry
         flag = false
       end
+
       if inquiry.include?('youtu')
          result << inquiry
       end
